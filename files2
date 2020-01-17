@@ -1,0 +1,51 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+        static uint dec(string s)
+        {
+            uint wynik = 0;
+            for (int i = 0; i< s.Length; i++)
+            {
+                if (s[s.Length - 1 - i] == '1') wynik += (uint)Math.Pow(2, i);
+
+            }
+            return wynik;
+        }
+        static void Main(string[] args)
+        {
+            try
+            {
+                using (StreamReader odczyt = new StreamReader(@"c:\pliki\zerojeden.txt"))
+                {
+                    string linia;
+                    uint ile = 0;
+                    while ((linia = odczyt.ReadLine()) != null)
+                    {
+                        
+                        Console.WriteLine(linia);
+                        ile++;
+                        int z = Convert.ToInt32(linia, 2);
+                        Console.WriteLine("Binarna wersja tej liczy to: {0}", z);
+                        Console.WriteLine("lub drugim sposobem {0}", dec(linia));
+                    }
+                    Console.WriteLine("Ilosc wartosci: {0}", ile);
+
+
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Blad odczytu pliku");
+                Console.WriteLine(e.Message);
+            }
+        }
+    }
+}
