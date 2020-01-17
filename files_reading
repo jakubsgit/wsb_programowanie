@@ -1,0 +1,71 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try {
+                using (StreamReader odczyt = new StreamReader(@"c:\pliki\tekst.txt"))
+                {
+                    String caly;
+                    caly =  odczyt.ReadToEnd();
+                    string[] slowa = caly.Split(' ');
+                    Console.WriteLine(slowa);
+                    Console.WriteLine(slowa.Length);
+
+                    // sposob 1
+                    int all1 = 0, all2 = 0;
+                    for (int i = 0; i < slowa.Length; i++)
+                    {
+                        all1 += slowa[i].Length;
+                    }
+
+
+                    Console.WriteLine("Ilosc liter wynosi {0}", all1);
+
+                    uint[] ilosc = new uint[26];
+                    for (int i = 0; i< 26; i++)
+                    {
+                        ilosc[i] = 0;
+
+                    }
+                    for (int j=0;j<slowa.Length; j++)
+                    {
+                        for (int k =0; k< slowa[j].Length; k++)
+                        {
+                            all2++;
+                            uint ind = (uint)(slowa[j][k] - 'a');
+                            ilosc[ind]++;
+
+                        }
+                    }
+                    Console.WriteLine("Ilosc liter drugim sposobem wynosi {0}", all2);
+                    for (uint i=0; i <26; i ++)
+                    {
+                        char lit = (char)(i + 'a');
+                        Console.WriteLine("Ilsc wystapien litery {0} wynosi {1}", lit, ilosc[i]);
+                        double proc = (double)ilosc[i] / all1;
+                        Console.WriteLine("PRocentowy udzial wystepowania litery {0} wynosi {1}", lit, ilosc[i].Math.Round(proc, 6));
+
+
+
+
+                    }
+
+
+                }
+            } catch(IOException e)
+            {
+                Console.WriteLine("Blad odczytu pliku");
+                Console.WriteLine(e.Message);
+            }
+        }
+    }
+}
