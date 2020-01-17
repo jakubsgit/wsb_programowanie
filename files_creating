@@ -1,0 +1,89 @@
+using System;
+using System.IO;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            FileStream plik = new FileStream("test1.txt", FileMode.Append, FileAccess.Write);
+            try
+            { 
+            StreamWriter zapis = new StreamWriter(plik);
+                zapis.WriteLine("ciag dlaszy");
+                zapis.WriteLine("ostatni wpis naszego boga");
+                
+                zapis.Close();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            plik.Close();
+            FileInfo finfo = new FileInfo("test1.txt");
+            Console.WriteLine("Pełna nazwa: {0}", finfo.FullName);
+            Console.WriteLine(finfo.Attributes.ToString());
+            Console.WriteLine("To jest extra !");
+
+
+
+            FileStream plik2 = new FileStream("test2.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            try
+            {
+                StreamWriter zapis2 = new StreamWriter(plik2);
+                string[] zdania = new string[3];
+                zdania[0] = "Ala ma kota";
+                zdania[1] = "Kot ma ALe";
+                zdania[2] = "Cos tam jeszcze";
+                int i;
+                for (i = 0; i <= 2; i++) {
+                    zapis2.WriteLine("{0}. {1}", i + 1, zdania[i]);
+                }
+
+
+
+                zapis2.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            plik2.Close();
+
+
+            FileStream plik3 = new FileStream("test3.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            try
+            {
+                StreamWriter zapis2 = new StreamWriter(plik3);
+                string linia = "";
+                int i = 1;
+                while (linia != "end")
+                {
+                    try
+                    {
+                        Console.WriteLine("Podaj {0} linie tekstu", i);
+                        linia = Console.ReadLine();
+                            zapis2.WriteLine("{0}. {1}", i, linia);
+                        i++;
+
+                    }
+                    catch ( Exception exception)
+                    {
+
+                        Console.WriteLine(exception.ToString());
+                    }
+                }
+                zapis2.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            plik3.Close();
+
+
+
+        }
+    }
+}
