@@ -1,0 +1,274 @@
+using System;
+
+namespace Kolokwium
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Witaj w programie kolokwialnym, wybierz jaka funkcja ma zostać sprawdzona:");
+            Console.WriteLine("1 - Instrukcja warunkowa\n2 - Działanie pętli\n3 - tablica logiczna\n4 - matryca matematyczna\n5 - Totolotek\n6 - Koniec");
+            Console.WriteLine("=====================================");
+            Console.WriteLine("Podaj liczbę:");
+            byte wybor;
+            wybor = byte.Parse(Console.ReadLine());
+            switch (wybor)
+            {
+                case 1:
+                    DateTime start = DateTime.Now;
+                    uint suma, pier;
+                    for (uint j = 2; j <= 4000000; j++)
+                    {
+                        suma = 1;
+                        pier = (uint)Math.Sqrt(j);
+                        for (uint i = 2; i <= pier; i++)
+                        {
+                            if (j % i == 0) suma += i + j / i;
+                        }
+                        if (j == pier * pier) suma -= pier;
+                        if (j == suma) Console.WriteLine("{0} jest doskonała", j);
+                    }
+                    DateTime stop = DateTime.Now;
+                    TimeSpan roznica = stop - start;
+                    Console.WriteLine("Czas działania: " + roznica.TotalMilliseconds / 1000 + "s");
+                    break;
+                case 2:
+                    uint n;
+                    Console.WriteLine("Podaj ilość elementów tablicy: ");
+                    n = uint.Parse(Console.ReadLine());
+                    int[] tab = new int[n];
+                    Random Obiekt = new Random();
+                    Console.WriteLine("Tablica losowa: ");
+                    for (int i = 0; i < n; i++)
+                    {
+                        tab[i] = Obiekt.Next(1, 101);
+                        Console.Write("{0} ", tab[i]);
+                    }
+                    int imin, pom;
+                    for (int j = 0; j < n - 1; j++)
+                    {
+                        imin = j;
+                        for (int i = j + 1; i < n; i++)
+                        {
+                            if (tab[i] < tab[imin]) imin = i;
+                        }
+                        pom = tab[j];
+                        tab[j] = tab[imin];
+                        tab[imin] = pom;
+                    }
+                    Console.WriteLine();
+                    Console.WriteLine("Tablica posortowana:");
+                    for (int i = 0; i < n; i++)
+                    {
+                        Console.WriteLine("{0} ", tab[i]);
+                    }
+                    break;
+                case 3:
+                    string[,] matryca = new string[100, 5];
+                    matryca[0, 1] = "Słowacki"; matryca[0, 2] = "Juliusz"; matryca[0, 3] = "66"; matryca[0, 4] = "Chiny";
+                    matryca[1, 1] = "Mickiewicz"; matryca[1, 2] = "Adam"; matryca[1, 3] = "67"; matryca[1, 4] = "Iran";
+                    matryca[2, 1] = "Miłosz"; matryca[2, 2] = "Czesław"; matryca[2, 3] = "68"; matryca[2, 4] = "Afganiztan";
+                    matryca[3, 1] = "Żeromski"; matryca[3, 2] = "Stefan"; matryca[3, 3] = "69"; matryca[3, 4] = "Uzbekistan";
+                    matryca[4, 1] = "Sienkiewicz"; matryca[4, 2] = "Henryk"; matryca[4, 3] = "50"; matryca[4, 4] = "Kazachstan";
+                    matryca[5, 1] = "Reymont"; matryca[5, 2] = "Władysław"; matryca[5, 3] = "51"; matryca[5, 4] = "Japonia";
+                    matryca[6, 1] = "Konopnicka"; matryca[6, 2] = "Maria"; matryca[6, 3] = "42"; matryca[6, 4] = "Indie";
+                    matryca[7, 1] = "Wyspiański"; matryca[7, 2] = "Stanisław"; matryca[7, 3] = "53"; matryca[7, 4] = "Wietnam";
+                    matryca[8, 1] = "Prus"; matryca[8, 2] = "Bolesław"; matryca[8, 3] = "54"; matryca[8, 4] = "Birma";
+                    matryca[9, 1] = "Nałkowska"; matryca[9, 2] = "Zofia"; matryca[9, 3] = "55"; matryca[9, 4] = "Turcja";
+                    matryca[10, 1] = "Szymborska"; matryca[10, 2] = "Wisława"; matryca[10, 3] = "56"; matryca[10, 4] = "Macedonia";
+                    matryca[11, 1] = "Kochanowski"; matryca[11, 2] = "Jan"; matryca[11, 3] = "57"; matryca[11, 4] = "Mołdawia";
+                    matryca[12, 1] = "Mrożek"; matryca[12, 2] = "Sławomir"; matryca[12, 3] = "58"; matryca[12, 4] = "Indonezja";
+                    matryca[13, 1] = "Fredro"; matryca[13, 2] = "Aleksander"; matryca[13, 3] = "59"; matryca[13, 4] = "Sri Lanka";
+                    matryca[14, 1] = "Grochola"; matryca[14, 2] = "Katarzyna"; matryca[14, 3] = "30"; matryca[14, 4] = "Irak";
+                    matryca[15, 1] = "Tokarczuk"; matryca[15, 2] = "Olga"; matryca[15, 3] = "59"; matryca[15, 4] = "Pakistan";
+                    matryca[16, 1] = "Borowski"; matryca[16, 2] = "Tadeusz"; matryca[16, 3] = "58"; matryca[16, 4] = "Izrael";
+                    matryca[17, 1] = "Pasek"; matryca[17, 2] = "Jan"; matryca[17, 3] = "57"; matryca[17, 4] = "Panama";
+                    matryca[18, 1] = "Różewicz"; matryca[18, 2] = "Stanisław"; matryca[18, 3] = "56"; matryca[18, 4] = "Singapur";
+                    matryca[19, 1] = "Herbert"; matryca[19, 2] = "Zbigniew"; matryca[19, 3] = "55"; matryca[19, 4] = "Kenia";
+                    matryca[20, 1] = "Baczyński"; matryca[20, 2] = "Krzysztof Kamil"; matryca[20, 3] = "54"; matryca[20, 4] = "RPA";
+                    matryca[21, 1] = "Czechowicz"; matryca[21, 2] = "Julian"; matryca[21, 3] = "53"; matryca[21, 4] = "Brazylia";
+                    matryca[22, 1] = "Przyboś"; matryca[22, 2] = "Jan"; matryca[22, 3] = "52"; matryca[22, 4] = "Peru";
+                    matryca[23, 1] = "Gombrowicz"; matryca[23, 2] = "Witold"; matryca[23, 3] = "51"; matryca[23, 4] = "Chile";
+                    matryca[24, 1] = "Leśmian"; matryca[24, 2] = "Bolesław"; matryca[24, 3] = "50"; matryca[24, 4] = "Urugwaj";
+                    matryca[25, 1] = "Staff"; matryca[25, 2] = "Leopold"; matryca[25, 3] = "69"; matryca[25, 4] = "Paragwaj";
+                    matryca[26, 1] = "Orzeszkowa"; matryca[26, 2] = "Eliza"; matryca[26, 3] = "68"; matryca[26, 4] = "Boliwia";
+                    matryca[27, 1] = "Krasiński"; matryca[27, 2] = "Zygmunt"; matryca[27, 3] = "67"; matryca[27, 4] = "Zjednoczone Emiraty Arabskie";
+                    matryca[28, 1] = "Niemcewicz"; matryca[28, 2] = "Julian"; matryca[28, 3] = "66"; matryca[28, 4] = "Kuwejt";
+                    matryca[29, 1] = "Staszic"; matryca[29, 2] = "Stanisław"; matryca[29, 3] = "67"; matryca[29, 4] = "Argentyna";
+                    matryca[30, 1] = "Krasicki"; matryca[30, 2] = "Ignacy"; matryca[30, 3] = "68"; matryca[30, 4] = "Meksyk";
+                    for (int i = 0; i < 100; i++)
+                    {
+                        matryca[i, 0] = (i + 1).ToString();
+                    }
+                    int opcja;
+                    do
+                    {
+                        Console.WriteLine("1 - cała baza\n2 - Wedug numeru\n3 - według imienia \n4 - według nazwiska\n5 - Kraj\n6 - Koniec");
+                        opcja = int.Parse(Console.ReadLine());
+                        switch (opcja)
+                        {
+                            case 1:
+
+                                for (int i = 0; i < 100; i++)
+                                {
+                                    if (matryca[i, 1] == null) break;
+                                    else
+                                    {
+                                        Console.WriteLine("{0}. {1} {2} {3} lat, kraj pochodzenia {4}", matryca[i, 0], matryca[i, 1], matryca[i, 2], matryca[i, 3], matryca[i, 4]);
+                                    }
+                                }
+                                break;
+                            case 2:
+                                int numer;
+                                Console.WriteLine("Podaj numer: ");
+                                numer = int.Parse(Console.ReadLine());
+                                Console.WriteLine("{0}. {1} {2} {3} lat, kraj pochodzenia {4}", matryca[numer - 1, 0], matryca[numer - 1, 1], matryca[numer - 1, 2], matryca[numer - 1, 3], matryca[numer - 1, 4]);
+
+                                break;
+                            case 3:
+                                string imie;
+                                Console.WriteLine("Podaj imię: ");
+                                imie = Console.ReadLine();
+                                for (int i = 0; i < 100; i++)
+                                {
+                                    if (matryca[i, 1] == null) break;
+                                    else
+                                    {
+                                        if (matryca[i, 2].ToUpper() == imie.ToUpper())
+                                            Console.WriteLine("{0}. {1} {2} {3} lat, kraj pochodzenia {4}", matryca[i, 0], matryca[i, 1], matryca[i, 2], matryca[i, 3], matryca[i, 4]);
+                                    }
+                                }
+                                break;
+                            case 4:
+                                string pocz;
+                                Console.WriteLine("Podaj początek nazwiska: ");
+                                pocz = Console.ReadLine();
+                                for (int i = 0; i < 100; i++)
+                                {
+                                    if (matryca[i, 1] == null) break;
+                                    else
+                                    {
+                                        if (matryca[i, 1].StartsWith(pocz))
+                                            Console.WriteLine("{0}. {1} {2} {3} lat, kraj pochodzenia {4}", matryca[i, 0], matryca[i, 1], matryca[i, 2], matryca[i, 3], matryca[i, 4]);
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                    while (opcja != 6);
+                    break;
+                case 4:
+                    int[,] binarka = new int[10, 10];
+                    Random obiekt = new Random();
+                    Console.WriteLine("Macierz binarna: ");
+                    for (int i = 0; i < 10; i++)
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            binarka[i, j] = obiekt.Next(0, 2);
+                            Console.Write("{0} ", binarka[i, j]);
+                        }
+                        Console.WriteLine();
+                    }
+                    int wiersz, kolumna;
+                    Console.WriteLine("Podaj numer wiersza od 1 do 10: ");
+                    wiersz = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj numer kolumny od 1 do 10: ");
+                    kolumna = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("Podałeś liczby: {0}, {1}", wiersz - 1, kolumna - 1);
+                    Console.WriteLine("Liczba w tablicy to: {0}", binarka[wiersz - 1, kolumna - 1]);
+                    Console.WriteLine("binarka[{0},{1}]={2}", wiersz - 1, kolumna - 1, binarka[wiersz - 1, kolumna - 1]);
+
+                    Console.WriteLine("Podaj numer wiersza:");
+                    wiersz = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Elementy w {0} wierszu: ", wiersz);
+                    int ile1 = 0;
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Console.WriteLine("binarka[{0},{1}]={2}", wiersz - 1, i, binarka[wiersz - 1, kolumna - 1]);
+                        ile1 += binarka[wiersz - 1, i];
+
+                    }
+                    Console.WriteLine("Ilość jedynek: {0}", ile1);
+                    break;
+                case 5:
+                        uint[] losowe = new uint[49];
+                        uint[] gracz = new uint[6];
+                        Random Los = new Random();
+                        for (uint i = 0; i < 49; i++) losowe[i] = i + 1;
+                        for (uint i = 0; i <= 10000; i++)
+                        {
+                            int m1 = Los.Next(0, 49);
+                            int m2 = Los.Next(0, 49);
+                            if (m1 != m2)
+                            {
+                                uint pomo = losowe[m1];
+                                losowe[m1] = losowe[m2];
+                                losowe[m2] = pomo;
+                            }
+                        }
+                        bool powt;
+                        Console.WriteLine("Wybierz swoje szczęśliwe liczby...");
+                        for (uint i = 0; i < 6; i++)
+                        {
+                            do
+                            {
+                                powt = false;
+
+                                do
+                                {
+                                    Console.Write("Podaj swój {0} typ: ", i + 1);
+                                    gracz[i] = uint.Parse(Console.ReadLine());
+                                    if (gracz[i] < 1 || gracz[i] > 49) Console.WriteLine("Nie ma takiego numeru!");
+                                }
+                                while (gracz[i] < 1 || gracz[i] > 49);
+                                for (uint j = 0; j < i; j++)
+                                {
+                                    if (gracz[i] == gracz[j])
+                                    {
+                                        powt = true;
+                                        break;
+                                    }
+                                }
+                                if (powt) Console.WriteLine("Ta liczba została już wybrana");
+                            }
+                            while (powt == true);
+                        }
+                        Console.WriteLine("Twoje Typy:");
+                        for (uint i = 0; i < 6; i++)
+                        {
+                            Console.Write("{0} ", gracz[i]);
+                        }
+
+                        Console.WriteLine();
+                        Console.WriteLine("Wylosowane numery w lotto:");
+                        for (uint i = 0; i < 6; i++)
+                        {
+                            Console.Write("{0} ", losowe[i]);
+                        }
+                        uint ile = 0;
+                        for (uint i = 0; i < 6; i++)
+                        {
+                            for (uint j = 0; j < 6; j++)
+                            {
+                                if (gracz[i] == losowe[j])
+                                {
+                                    Console.WriteLine("Trafiłeś {0}", gracz[i]);
+                                    ile++;
+                                }
+                            }
+                        }
+                        Console.WriteLine("Ilość trafień: {0}", ile);
+                        break;
+                    case 6:
+                    Console.WriteLine("Dzięki za skorzystanie z programu...");
+                    break;
+                default:
+                    Console.WriteLine("Niepoprawna opcja!");
+                    break;
+            }
+
+        }
+    }
+}
